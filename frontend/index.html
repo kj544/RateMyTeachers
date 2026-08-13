@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Faculty Ledger</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="masthead">
+      <div class="masthead-title">
+        <span class="eyebrow">Vol. I — Open Record</span>
+        <h1>The Faculty Ledger</h1>
+        <div class="tagline">Rate teachers and coordinators on a scale of 1–10, and leave a review in your own words. Every entry is added to the shared record.</div>
+      </div>
+      <button class="addbtn" id="openAddBtn">+ Add teacher / coordinator</button>
+    </div>
+  </header>
+
+  <div class="controls">
+    <input type="text" class="search" id="searchInput" placeholder="Search by name or department…">
+    <select class="deptfilter" id="roleFilter">
+      <option value="all">All roles</option>
+      <option value="Teacher">Teachers only</option>
+      <option value="Coordinator">Coordinators only</option>
+    </select>
+    <select class="deptfilter" id="sortFilter">
+      <option value="rating">Sort: highest rated</option>
+      <option value="reviews">Sort: most reviewed</option>
+      <option value="name">Sort: name (A–Z)</option>
+    </select>
+  </div>
+
+  <div class="grid" id="grid">
+    <div class="empty">Loading the ledger…</div>
+  </div>
+
+  <div class="footnote">Ratings and reviews are stored on the shared server and visible to everyone.</div>
+</div>
+
+<!-- Rate & Review Modal -->
+<div class="overlay" id="rateOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <div class="modal-avatar-row">
+        <label for="photoInput" id="modalAvatar" class="avatar avatar-lg" title="Click to change photo"></label>
+        <input type="file" id="photoInput" accept=".jpg,.jpeg,.png,.webp" hidden>
+        <div>
+          <h2 id="rateName">—</h2>
+          <div class="tdept" id="rateDept" style="margin:2px 0 0;">—</div>
+        </div>
+      </div>
+      <button class="closex" data-close>&times;</button>
+    </div>
+
+    <label>Your score (1–10)</label>
+    <div class="scoregrid" id="scoreGrid"></div>
+    <div class="score-readout" id="scoreReadout">Tap a number to set your score.</div>
+
+    <label>Your review</label>
+    <textarea id="reviewText" placeholder="Share your honest experience — teaching style, clarity, support, fairness, whatever stood out."></textarea>
+
+    <label>Your name <span style="text-transform:none;letter-spacing:0;">(optional — leave blank to stay anonymous)</span></label>
+    <input type="text" id="reviewerName" placeholder="Anonymous">
+
+    <div class="submitrow">
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="submitReview">Submit review</button>
+    </div>
+
+    <hr class="divider">
+    <div class="reviews-head">
+      <h3>Past reviews</h3>
+      <span class="revcount" id="rateRevCount"></span>
+    </div>
+    <div class="reviewlist" id="reviewList"></div>
+  </div>
+</div>
+
+<!-- Add Teacher Modal -->
+<div class="overlay" id="addOverlay">
+  <div class="modal">
+    <div class="modal-head">
+      <h2>Add to the ledger</h2>
+      <button class="closex" data-close>&times;</button>
+    </div>
+    <label>Full name</label>
+    <input type="text" id="newName" placeholder="e.g. Dr. Elena Marsh">
+    <div class="field-row">
+      <div>
+        <label>Role</label>
+        <select class="deptfilter" id="newRole" style="width:100%;">
+          <option value="Teacher">Teacher</option>
+          <option value="Coordinator">Coordinator</option>
+        </select>
+      </div>
+      <div>
+        <label>Department</label>
+        <input type="text" id="newDept" placeholder="e.g. Mathematics">
+      </div>
+    </div>
+    <label>Photo <span style="text-transform:none;letter-spacing:0;">(optional)</span></label>
+    <input type="file" id="newPhoto" accept=".jpg,.jpeg,.png,.webp">
+    <div class="submitrow">
+      <button class="btn ghost" data-close>Cancel</button>
+      <button class="btn primary" id="submitNewTeacher">Add entry</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
