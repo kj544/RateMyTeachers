@@ -14,9 +14,9 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "https://your-actual-site-name.netlify.app",  # replace with your real Netlify URL
-        "http://localhost:3000",                       # optional: for local frontend testing
-        "http://127.0.0.1:5500",                        # optional: if using VS Code Live Server
+        "https://glowing-kataifi-9d547f.netlify.app",
+        "http://localhost:3000",
+        "http://127.0.0.1:5500",
     ],
     allow_credentials=True,
     allow_methods=["*"],
