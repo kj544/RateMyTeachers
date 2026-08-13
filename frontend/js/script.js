@@ -1,5 +1,5 @@
 (function(){
-  const API_BASE = 'http://127.0.0.1:8000';
+ const API_BASE = 'https://ratemyteachers.onrender.com';
   let teachers = [];              // list from GET /teachers/ (includes average_rating, review_count)
   let currentReviews = [];        // reviews for whichever teacher's modal is open
   let activeTeacherId = null;
